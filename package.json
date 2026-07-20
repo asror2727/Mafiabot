@@ -1,0 +1,13 @@
+{
+  "name": "mafia-engine",
+  "version": "1.0.0",
+  "description": "Telegram Mafia Engine V3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5"
+  }
+}
