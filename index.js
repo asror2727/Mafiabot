@@ -1,69 +1,28 @@
+require("dotenv").config();
+
 const express = require("express");
+const connectDB = require("./config/db");
 
 const app = express();
 
 app.use(express.json());
 
-const games = {};
+// MongoDB ulash
+connectDB();
 
-// Test
 app.get("/", (req, res) => {
-  res.send("✅ Mafia Engine Online");
-});
-
-// Game yaratish
-app.post("/game/start", (req, res) => {
-
-  const chatId = req.body.chat_id;
-
-  if (!chatId) {
-    return res.json({
-      ok: false,
-      error: "chat_id required"
-    });
-  }
-
-  if (games[chatId]) {
-    return res.json({
-      ok: false,
-      error: "Game already exists"
-    });
-  }
-
-  games[chatId] = {
-    status: "WAITING",
-    players: [],
-    started: Date.now(),
-    timer: 120
-  };
-
-  console.log("Game:", chatId);
 
   res.json({
-    ok: true
+    ok: true,
+    message: "Mafia Engine Online 🚀"
   });
 
 });
 
-// Game olish
-app.get("/game/:id", (req,res)=>{
+const PORT = process.env.PORT || 3000;
 
-const game = games[req.params.id];
+app.listen(PORT, () => {
 
-if(!game){
-
-return res.json({
-ok:false
-});
-
-}
-
-res.json(game);
-
-});
-
-app.listen(process.env.PORT || 3000,()=>{
-
-console.log("Mafia Engine Started");
+  console.log("Server Started : " + PORT);
 
 });
