@@ -1,11 +1,14 @@
 {
   "name": "mafia-engine",
   "version": "1.0.0",
+  "description": "Telegram Mafia Engine",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "mongoose": "^8.18.0"
   }
 }
