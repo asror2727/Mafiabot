@@ -156,8 +156,14 @@ app.post("/startNight", async (req, res) => {
     return { id: p.id, name: p.name, alive: true, role, team, target: null }
   })
 
-  const failed = []
+  // MUHIM: BBga DARHOL javob qaytaramiz. 14+ kishiga birma-bir Telegramga
+  // xabar yuborish bir necha soniya davom etadi, Render bepul tarifda
+  // "uxlab qolgan" bo'lsa uyg'onish ham qo'shimcha vaqt oladi — BB esa
+  // shuncha kutmaydi va "success" callback'ni chaqirmay qoladi.
+  // Shu sabab avval javob beramiz, private xabarlarni keyin (fonda) yuboramiz.
+  res.json({ ok: true, chatId, players: updated })
 
+  // ---- Fondagi ish: har kimga private rolni yuborish ----
   for (const p of updated) {
     const info = defaultAction(p.role)
     let markup = null
@@ -173,14 +179,11 @@ app.post("/startNight", async (req, res) => {
     const text = "🎭 <b>Sizning rolingiz</b>\n\n<b>" + p.role + "</b>\n\n" + info.text
 
     try {
-      const result = await sendTelegramMessage(p.id, text, markup)
-      if (!result.ok) failed.push(p.name)
+      await sendTelegramMessage(p.id, text, markup)
     } catch (e) {
-      failed.push(p.name)
+      console.log("Rol yuborilmadi:", p.name, e.message)
     }
   }
-
-  return res.json({ ok: true, chatId, players: updated, failed })
 })
 
 // =========================================================================
