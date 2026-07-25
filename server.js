@@ -35,10 +35,12 @@ const ROLE_INFO = {
   "👻 Arvoh":           { team: "town" },
   "🧑‍⚖️ Sudya":         { team: "town" },
   "🦊 Ayyor":           { team: "town" },
+  "🕊 Diplomat":        { team: "town" },
   "💻 Xaker":           { team: "solo" },
   "🛍 Savdogar":        { team: "solo" },
   "👷 Konchi":          { team: "solo" },
   "🐉 Gidra":           { team: "solo" },
+  "💰 Rais":            { team: "solo" },
   "🦹 Yollanma qotil":  { team: "solo" },
   "🎭 Mimik":           { team: "solo" },
   "🧛 Vampir":          { team: "solo" },
@@ -90,11 +92,13 @@ function buildRoles(count) {
   if (count >= 20) roles.push("👻 Arvoh")
   if (count >= 20) roles.push("🧑‍⚖️ Sudya")
   if (count >= 18) roles.push("🦊 Ayyor")
+  if (count >= 13) roles.push("🕊 Diplomat")
 
   if (count >= 9)  roles.push("💻 Xaker")
   if (count >= 10) roles.push("🛍 Savdogar")
   if (count >= 12) roles.push("👷 Konchi")
   if (count >= 14) roles.push("🐉 Gidra")
+  if (count >= 13) roles.push("💰 Rais")
   if (count >= 16) roles.push("🦹 Yollanma qotil")
   if (count >= 16) roles.push("🎭 Mimik")
   if (count >= 16) roles.push("🧛 Vampir")
